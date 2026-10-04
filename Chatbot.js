@@ -7,21 +7,24 @@ function InputText({ onSendMassage }) {
         setChatInput("")
     }
     return (
-        <div>
-            <input value={chatInput} onChange={(e) => setChatInput(e.target.value)} />
+        <div className="inputCon">
+            <input size="30" value={chatInput} onChange={(e) => setChatInput(e.target.value)} />
             <button onClick={submitButton}>Send Message</button>
         </div>
     )
 }
 
 function TextBot({ message, sender }) {
-    return (
-        <div>
-            {sender === "robot" && <img src="./asset/robot.png" width="50"></img>}
-            {message}
-            {sender === "user" && <img src="./asset/user.jfif" width="50" />}
 
-        </div>
+    return (
+       
+            <div className={sender}>
+                {sender === "robot" && <img src="./asset/robot.png" width="50"></img>}
+                <p>{message}</p>
+                {sender === "user" && <img src="./asset/user.jfif" width="50" />}
+
+            </div>
     )
+
 
 }

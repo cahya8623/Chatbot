@@ -1,6 +1,6 @@
 function App() {
     const [inputText, setInputText] = React.useState([])
-    console.log(inputText)
+    const chatMessageRef = React.useRef(null);
     function handleInputText(text) {
         setInputText((input) =>
             [
@@ -26,8 +26,21 @@ function App() {
         )
 
     }
+    React.useEffect(() => {
+        const containerElem = chatMessageRef.current;
+
+        if (containerElem) {    
+            containerElem.scrollTop = containerElem.scrollHeight
+            console.log("scroll top "+containerElem.scrollTop)
+            console.log("scroll height "+containerElem.scrollHeight)
+        }
+
+    }, [handleInputText])
+
+
+
     return (
-        <div>
+        <div className="container" ref={chatMessageRef}>
             <InputText onSendMassage={handleInputText} />
             {inputText.map((data) => {
                 return (
